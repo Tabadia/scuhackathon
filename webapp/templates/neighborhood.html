@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+      <link href="./main.css" rel="stylesheet" />
+      <title>Livability</title>
+   </head>
+   <body>
+    <header class="header">
+        <div>
+            <div class="head-title">Neighborhood Livability</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-flex">
+            <div class="map-container">
+                <div class="map"></div>
+            </div>
+            
+            <div class="info-container">
+                <div class="neighbor-flex">
+                    <div class="neighbor-name">Fowler Creek</div>
+                    <div class="neighbor-score">7.5</div>
+                </div>
+        
+                <div>
+                    <div class="trend-head">Trends</div>
+                    <div class="trend-flex">
+                        <!-- array of divs with trends -->
+                         <div class="trend-item">
+                            <div class="score-head">Livability Score</div>
+                            <div class="score">7.5</div>
+                            <div class="year-flex">
+                                <div class="year-item">
+                                    <div class="year-head">+0.2</div>
+                                    <div class="year">5 year</div>
+                                </div>
+                                <div class="year-item">
+                                    <div class="year-head">-0.8</div>
+                                    <div class="year">10 year</div>
+                                </div>
+                                <div class="year-item">
+                                    <div class="year-head">-2.1</div>
+                                    <div class="year">15 year</div>
+                                </div>
+                            </div>
+                         </div>
+
+                         <div class="trend-item">
+                            <div class="score-head">{ScoreType} Score</div>
+                            <div class="score">{Score}</div>
+                            <div class="year-flex">
+                                <div class="year-item">
+                                    <div class="year-head">{5}</div>
+                                    <div class="year">5 year</div>
+                                </div>
+                                <div class="year-item">
+                                    <div class="year-head">{10}</div>
+                                    <div class="year">10 year</div>
+                                </div>
+                                <div class="year-item">
+                                    <div class="year-head">{15}</div>
+                                    <div class="year">15 year</div>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+   </body>
+</html>
