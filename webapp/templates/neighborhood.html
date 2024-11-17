@@ -1,76 +1,124 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-      <link href="./main.css" rel="stylesheet" />
-      <title>Livability</title>
-   </head>
-   <body>
-    <header class="header">
-        <div>
-            <div class="head-title">Neighborhood Livability</div>
-        </div>
-    </header>
-
-    <main>
-        <div class="main-flex">
-            <div class="map-container">
-                <div class="map"></div>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+        <title>Livability</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="  crossorigin=""/> 
+        <link href="../static/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header class="header">
+            <div>
+                <div class="head-title">Neighborhood Livability</div>
             </div>
-            
-            <div class="info-container">
-                <div class="neighbor-flex">
-                    <div class="neighbor-name">Fowler Creek</div>
-                    <div class="neighbor-score">7.5</div>
-                </div>
-        
-                <div>
-                    <div class="trend-head">Trends</div>
-                    <div class="trend-flex">
-                        <!-- array of divs with trends -->
-                         <div class="trend-item">
-                            <div class="score-head">Livability Score</div>
-                            <div class="score">7.5</div>
-                            <div class="year-flex">
-                                <div class="year-item">
-                                    <div class="year-head">+0.2</div>
-                                    <div class="year">5 year</div>
-                                </div>
-                                <div class="year-item">
-                                    <div class="year-head">-0.8</div>
-                                    <div class="year">10 year</div>
-                                </div>
-                                <div class="year-item">
-                                    <div class="year-head">-2.1</div>
-                                    <div class="year">15 year</div>
-                                </div>
-                            </div>
-                         </div>
+        </header>
+        <div id="map-container"></div>
 
-                         <div class="trend-item">
-                            <div class="score-head">{ScoreType} Score</div>
-                            <div class="score">{Score}</div>
-                            <div class="year-flex">
-                                <div class="year-item">
-                                    <div class="year-head">{5}</div>
-                                    <div class="year">5 year</div>
-                                </div>
-                                <div class="year-item">
-                                    <div class="year-head">{10}</div>
-                                    <div class="year">10 year</div>
-                                </div>
-                                <div class="year-item">
-                                    <div class="year-head">{15}</div>
-                                    <div class="year">15 year</div>
+        <main>
+            
+            <div class="main-flex">
+                
+                <div class="info-container">
+                    <div class="neighbor-flex">
+                        <div class="neighbor-name">{{nName}}</div>
+                        <div class="neighbor-score">7.5</div>
+                    </div>
+            
+                    <div>
+                        <div class="trend-head">Trends</div>
+                        <div class="trend-flex">
+                            <!-- array of divs with trends -->
+                            <div class="trend-item">
+                                <div class="score-head">Livability Score</div>
+                                <div class="score">7.5</div>
+                                <div class="year-flex">
+                                    <div class="year-item">
+                                        <div class="year-head">+0.2</div>
+                                        <div class="year">5 year</div>
+                                    </div>
+                                    <div class="year-item">
+                                        <div class="year-head">-0.8</div>
+                                        <div class="year">10 year</div>
+                                    </div>
+                                    <div class="year-item">
+                                        <div class="year-head">-2.1</div>
+                                        <div class="year">15 year</div>
+                                    </div>
                                 </div>
                             </div>
-                         </div>
+
+                            <div class="trend-item">
+                                <div class="score-head">{ScoreType} Score</div>
+                                <div class="score">{Score}</div>
+                                <div class="year-flex">
+                                    <div class="year-item">
+                                        <div class="year-head">{5}</div>
+                                        <div class="year">5 year</div>
+                                    </div>
+                                    <div class="year-item">
+                                        <div class="year-head">{10}</div>
+                                        <div class="year">10 year</div>
+                                    </div>
+                                    <div class="year-item">
+                                        <div class="year-head">{15}</div>
+                                        <div class="year">15 year</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
             </div>
-            
-        </div>
-    </main>
+        </main>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-   </body>
+        <script>
+            let nName = "{{nName}}";
+            const map = L.map('map-container',{
+                center: [37.3382, -121.8863],
+                zoom: 10.75,
+                zoomSnap: 0,
+                zoomDelta: 0.25,
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                touchZoom: false,
+            });
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            }).addTo(map);
+
+            const apiUrl = "https://geo.sanjoseca.gov/server/rest/services/OPN/OPN_OpenDataService/MapServer/549/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+            var polygon;
+            // Fetch data from api 
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // add polygons
+                    data.features.forEach(feature => {
+                        if(feature.attributes.NAME != nName){
+                            return;
+                        }
+                        const coords = feature.geometry.rings[0].map(coord => [coord[1], coord[0]]);
+                        polygon = L.polygon(coords, {
+                            color: 'blue',
+                            fillOpacity: 0.5,
+                        }).addTo(map)
+                        
+                    });
+                    const center = polygon.getBounds().getCenter();
+                    console.log(center);
+                    map.setView(center, 10.75);
+                    const bounds = polygon.getBounds();
+                    map.fitBounds(bounds);
+
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        </script>
+    </body>
 </html>
+

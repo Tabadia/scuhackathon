@@ -1,0 +1,164 @@
+* {
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.header{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.head-title{
+  text-align: center;
+  font-size: 5rem;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.map-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map {
+  /* border: 5px solid black;
+  /* height: auto; */
+  height: 500px;
+  /* display: block; */
+  width: 100%;
+}
+/* 
+#map-container {
+  width: 500px;
+  height: 800px;
+  background-color: #ffffff; 
+  border: 1px solid #ccc;   
+  margin: 20px auto;
+} */
+
+.main-flex{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.info-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  margin-top: 1rem;
+}
+
+.neightbor-flex{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: stretch;
+}
+
+.neighbor-name{
+  text-align: start;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.neighbor-score{
+  text-align: start;
+
+  font-size: 4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.trend-head{
+  text-align: start;
+
+  font-size: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.trend-flex{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.trend-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  margin: 1rem;
+  padding: 1rem;
+  /* background-color: rgb(233, 233, 233); */
+  border-radius: 10px;
+  border-color: rgb(233, 233, 233);
+  border-width: 3px;
+  border-style: solid;
+}
+
+.score-head{
+  font-size: 2rem;
+
+}
+
+.score{
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.year-flex{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.year-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  margin: .5rem;
+}
+
+.year-head{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.year{
+  font-size: 1.5rem;
+  color: gray;
+}
+
+#map-container {
+  width: 500px;
+  height: 800px;
+  background-color: white; 
+  border: 1px solid #ccc;
+  margin: 20px auto;
+}
