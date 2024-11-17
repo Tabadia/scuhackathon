@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
         <title>Livability</title>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="  crossorigin=""/> 
         <link href="../static/main.css" rel="stylesheet" />
@@ -9,7 +11,9 @@
     <body>
         <header class="header">
             <div>
-                <div class="head-title">Neighborhood Livability</div>
+                <a class="head-title" href="{{url_for('routes.index')}}">
+                    <img class="head-img" src="{{ url_for('static', filename='logo.png') }}" alt="">
+                </a>
             </div>
         </header>
         <div id="map-container"></div>
@@ -21,7 +25,7 @@
                 <div class="info-container">
                     <div class="neighbor-flex">
                         <div class="neighbor-name">{{nName}}</div>
-                        <div class="neighbor-score">7.5</div>
+                        <div class="neighbor-score">{{score}}</div>
                     </div>
             
                     <div>
@@ -49,7 +53,7 @@
 
                             <div class="trend-item">
                                 <div class="score-head">{ScoreType} Score</div>
-                                <div class="score">{Score}</div>
+                                <div class="score">{{score}}</div>
                                 <div class="year-flex">
                                     <div class="year-item">
                                         <div class="year-head">{5}</div>
@@ -74,6 +78,19 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
         <script>
+            function getColor(score) {
+                let green, red;
+                if (score <= 5) {
+                    red = 255;  
+                    green = 255 - (5- score) * 51; 
+                } else {
+                    red = 255- (score - 5) * 51;
+                    green = 255;   
+                }
+                const blue = 0;
+                return `rgb(${red}, ${green}, ${blue})`;
+            }
+            let score = "{{score}}";
             let nName = "{{nName}}";
             const map = L.map('map-container',{
                 center: [37.3382, -121.8863],
@@ -105,7 +122,7 @@
                         }
                         const coords = feature.geometry.rings[0].map(coord => [coord[1], coord[0]]);
                         polygon = L.polygon(coords, {
-                            color: 'blue',
+                            color: getColor(score),
                             fillOpacity: 0.5,
                         }).addTo(map)
                         

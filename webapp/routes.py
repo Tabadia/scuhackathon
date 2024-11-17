@@ -1,6 +1,8 @@
 from flask import Flask, jsonify , Blueprint, render_template, request
 import json, requests
 import numpy as np
+#import boto3
+
 # import geopandas as gpd
 
 routes = Blueprint('routes', __name__)
@@ -39,11 +41,13 @@ class Neighborhood:
 @routes.route("/neighborhood.html")
 def neighborhood():
     nName = request.args.get('nName')
+
+    
     # make request to bedrock with neighbor name
     # parse json request
     # return request as Neighborhood Class
     #return it  below VVVV
-    return render_template("neighborhood.html", nName=nName)
+    return render_template("neighborhood.html", nName=nName, score=7)
 
 @routes.route("/")
 def index():

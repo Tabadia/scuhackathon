@@ -1,5 +1,5 @@
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 
 }
 
@@ -12,10 +12,14 @@
 }
 
 .head-title{
-  text-align: center;
-  font-size: 5rem;
-  font-weight: bold;
   margin: 1rem;
+  display: flex;
+  justify-self: center;
+}
+
+.head-img{
+  height: 6rem;
+  width: auto;
 }
 
 .map-container{
@@ -44,8 +48,8 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .info-container{
@@ -55,39 +59,30 @@
   align-items: stretch;
   flex-wrap: nowrap;
   align-content: stretch;
-  margin-top: 1rem;
 }
 
-.neightbor-flex{
+.neighbor-flex{
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: start;
-  align-items: stretch;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .neighbor-name{
-  text-align: start;
   font-size: 4rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  font-weight: bold;
+  flex-grow: 1;
 }
 
 .neighbor-score{
-  text-align: start;
-
   font-size: 4rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
   font-weight: bold;
 }
 
 .trend-head{
   text-align: start;
-
-  font-size: 3rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
@@ -108,6 +103,7 @@
   flex-wrap: nowrap;
   align-content: stretch;
   margin: 1rem;
+  margin-left: 0;
   padding: 1rem;
   /* background-color: rgb(233, 233, 233); */
   border-radius: 10px;
@@ -156,9 +152,63 @@
 }
 
 #map-container {
-  width: 500px;
+  width: 100%;
   height: 800px;
   background-color: white; 
   border: 1px solid #ccc;
-  margin: 20px auto;
+}
+
+/*Search Box CSS*/
+
+* { box-sizing: border-box; }
+body {
+  font: 16px Arial;
+}
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+.submit {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: baseline;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 9999;
+  background-color: white;
+  width: 100%;
+}
+
+.autocomplete-items div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+  background-color: #ddd;
 }
